@@ -1,0 +1,93 @@
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  src: url('/fonts/BricolageGrotesque-Variable.ttf') format('truetype');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: #fefee5;
+  color: #373928;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::placeholder { color: rgba(255,255,255,0.35); }
+input { background: transparent; }
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.5s cubic-bezier(0.22,1,0.36,1), transform 0.5s cubic-bezier(0.22,1,0.36,1);
+}
+.fade-up.visible { opacity: 1; transform: none; }
+
+/* ── Responsive container ── */
+.container {
+  width: 100%;
+  max-width: 430px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+@media (min-width: 768px) {
+  .container { max-width: 760px; padding: 0 32px; }
+}
+@media (min-width: 1280px) {
+  .container { max-width: 1200px; padding: 0 48px; }
+}
+
+/* ── Products grid ── */
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.product-featured { grid-column: 1 / -1; }
+
+@media (min-width: 768px) {
+  .products-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1280px) {
+  .products-grid { grid-template-columns: repeat(4, 1fr); }
+  .product-featured { grid-column: span 2; }
+}
+
+/* ── Wholesale desktop layout ── */
+.wholesale-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+@media (min-width: 1280px) {
+  .wholesale-layout {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 80px;
+  }
+  .wholesale-benefits { flex: 1; }
+  .wholesale-form     { flex: 1; }
+}
+
+/* ── Footer grid ── */
+.footer-bottom-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+@media (min-width: 768px) {
+  .footer-bottom-grid {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
