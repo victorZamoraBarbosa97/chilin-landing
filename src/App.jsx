@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import Loader from './components/Loader'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Products from './components/Products'
@@ -43,16 +44,25 @@ const TweaksPanel = ({ tweaks, setTweaks, onClose }) => {
 export default function App() {
   const [tweaks, setTweaks] = useState(TWEAK_DEFAULTS)
   const [showTweaks, setShowTweaks] = useState(false)
+  const [revealed, setRevealed] = useState(false)
+  const [revealDone, setRevealDone] = useState(false)
 
   useEffect(() => {
+    document.body.style.backgroundColor = '#120400'
+    return () => { document.body.style.backgroundColor = '' }
+  }, [])
+
+  useEffect(() => {
+    if (!revealed) return
     const els = document.querySelectorAll('.fade-up')
     const obs = new IntersectionObserver(
       (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') }),
       { threshold: 0.1 }
     )
     els.forEach(el => obs.observe(el))
-    return () => obs.disconnect()
-  }, [])
+    const restore = setTimeout(() => { document.body.style.backgroundColor = '' }, 2000)
+    return () => { obs.disconnect(); clearTimeout(restore) }
+  }, [revealed])
 
   useEffect(() => {
     const handler = (e) => {
@@ -79,13 +89,19 @@ export default function App() {
 
   return (
     <>
-      <Nav />
-      <Hero />
-      <div className="fade-up"><Products rounded={tweaks.roundedCards} /></div>
-      <div className="fade-up"><Events /></div>
-      {tweaks.showWholesale && <div className="fade-up"><Wholesale /></div>}
-      <Footer />
-      {showTweaks && <TweaksPanel tweaks={tweaks} setTweaks={handleTweakChange} onClose={handleTweakClose} />}
+      <Loader onComplete={() => setRevealed(true)} />
+      <div
+        className={revealed && !revealDone ? 'app-reveal' : ''}
+        onAnimationEnd={() => setRevealDone(true)}
+      >
+        <Nav />
+        <Hero revealed={revealed} />
+        <div className="fade-up"><Products rounded={tweaks.roundedCards} /></div>
+        <div className="fade-up"><Events /></div>
+        {tweaks.showWholesale && <div className="fade-up"><Wholesale /></div>}
+        <Footer />
+        {showTweaks && <TweaksPanel tweaks={tweaks} setTweaks={handleTweakChange} onClose={handleTweakClose} />}
+      </div>
     </>
   )
 }

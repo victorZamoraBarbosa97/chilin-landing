@@ -53,12 +53,12 @@ export default function Nav({ onSection }) {
       }}>
         {/* Logo */}
         <div onClick={() => go('hero')} style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 10 }}>
-          <img src="/assets/logo.svg" width="42" height="42" alt="Chilin" />
+          <img src="/assets/logo_simple.png" width="56" height="56" alt="Chilin" style={{ objectFit: 'contain' }} />
           <span style={{
             fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 900,
             fontSize: '1.1rem', letterSpacing: '-0.02em', color: fg,
             textShadow: scrolled ? 'none' : '0 1px 8px rgba(0,0,0,0.3)',
-          }}>CHILIN</span>
+          }}></span>
         </div>
 
         {/* ── Tablet/Desktop: links inline ── */}

@@ -68,11 +68,14 @@ export default function Products() {
     <section id="productos" style={{ background: '#f5f3d0', padding: 'clamp(60px, 8vw, 100px) 0' }}>
       <div className="container">
         {/* Header */}
-        <div style={{ marginBottom: 36 }}>
-          <div style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: '0.72rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#f07a1a', marginBottom: 8 }}>Nuestros Productos</div>
-          <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 900, fontSize: 'clamp(2rem, 5vw, 3.2rem)', lineHeight: 1.0, letterSpacing: '-0.03em', color: '#373928', margin: 0 }}>
-            ELIGE TU<br/><span style={{ color: '#c4221e' }}>CUBETA</span>
-          </h2>
+        <div style={{ marginBottom: 36, display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24 }}>
+          <div>
+            <div style={{ fontFamily: "'Inter', sans-serif", fontWeight: 700, fontSize: '0.72rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: '#f07a1a', marginBottom: 8 }}>Nuestros Productos</div>
+            <h2 style={{ fontFamily: "'Bricolage Grotesque', sans-serif", fontWeight: 900, fontSize: 'clamp(2rem, 5vw, 3.2rem)', lineHeight: 1.0, letterSpacing: '-0.03em', color: '#373928', margin: 0 }}>
+              ELIGE TU<br/><span style={{ color: '#c4221e' }}>CUBETA</span>
+            </h2>
+          </div>
+          <img src="/assets/logo.svg" alt="Chilin" style={{ width: 'clamp(120px, 16vw, 200px)', height: 'clamp(120px, 16vw, 200px)', objectFit: 'contain', flexShrink: 0 }} />
         </div>
 
         {/* Grid responsivo via CSS */}

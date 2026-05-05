@@ -78,6 +78,15 @@ input { background: transparent; }
   .wholesale-form     { flex: 1; }
 }
 
+/* ── Loader circle reveal ── */
+.app-reveal {
+  animation: appReveal 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes appReveal {
+  0%   { clip-path: circle(0vmax   at 50vw 50vh); }
+  100% { clip-path: circle(140vmax at 50vw 50vh); }
+}
+
 /* ── Footer grid ── */
 .footer-bottom-grid {
   display: flex;
